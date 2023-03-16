@@ -1,0 +1,31 @@
+﻿@model SignIn
+@{
+    Layout = "~/Views/Shared/_menu.cshtml";
+}
+
+
+    <form method="post">
+        <div class="alert alert-primary" role="alert">
+            @ViewData["result"]
+        </div>
+
+    <div class="mb-3 ms-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" asp-for=Username placeholder="username">
+    </div>
+        <div class="mb-3 ms-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" asp-for=Password placeholder="Password">
+    </div>
+        <div class="mb-3 ms-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" asp-for="rememberMe">
+                <label class="form-check-label" >
+                    remember me
+                </label>
+            </div>
+        </div>
+        <div class="mb-3 ms-3">
+            <input type="submit" value="Login" asp-action="CheckPassword" class="btn btn-primary"/>
+        </div>
+    </form>

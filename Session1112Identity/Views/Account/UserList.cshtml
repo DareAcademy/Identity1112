@@ -1,0 +1,38 @@
+﻿@model List<UsersDTO>
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_menu.cshtml";
+}
+
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UsersDTO item in Model)
+        {
+         
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                    <a class="btn btn-primary" asp-action="UserRoles" asp-route-Name="@item.Name" asp-route-UserId="@item.Id">Add Role</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

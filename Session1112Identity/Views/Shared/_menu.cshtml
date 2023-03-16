@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUsers> signInManager
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>_menu</title>
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+	<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+	
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Clinic System</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+						@if (signInManager.IsSignedIn(User))
+					{
+					@if(User.IsInRole("admin")){
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" asp-controller="Dashboard" asp-action="Index" >Dashboard</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" asp-controller="Account" asp-action="CreateAccount">Create Account</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" asp-controller="Account" asp-action="NewRole">New Role</a>
+					</li>
+					}
+					}
+					<li class="nav-item">
+						<a class="nav-link" asp-controller="Account" asp-action="UserList">User List</a>
+					</li>
+
+					@if (signInManager.IsSignedIn(User))
+					{
+						<li class="nav-item">
+							<a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a>
+						</li>
+						<li class="nav-item">
+							@User.Identity.Name
+						</li>
+					}
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div>
+
+	@RenderBody()
+	</div>
+</body>
+</html>
